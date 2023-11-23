@@ -421,8 +421,11 @@ function getStringFromTemplate(firstName, lastName) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  const maskName = 'Hello, *!';
+  const extract = (str, mask) =>
+    str.match(new RegExp(mask.replace('*', '(.*)')))[1];
+  return extract(value, maskName);
 }
 
 /**
